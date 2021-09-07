@@ -1,6 +1,6 @@
 <template>
   <section class="columns is-centered pt-6">
-    <div class="column is-9 is-9-mobile is-6-desktop is-4-fullhd card">
+    <div class="column is-6-desktop is-4-fullhd">
       <div class="card-header-title">
         <div class="content"><h2>Register</h2></div>
       </div>

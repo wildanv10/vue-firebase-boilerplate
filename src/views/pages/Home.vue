@@ -10,10 +10,5 @@
       <li>Vuex</li>
       <li>PWA</li>
     </ul>
-    <div class="has-text-centered">
-      <router-link to="/login">Login</router-link>
-      |
-      <router-link to="/register">Register</router-link>
-    </div>
   </div>
 </template>

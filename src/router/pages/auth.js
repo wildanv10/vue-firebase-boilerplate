@@ -6,16 +6,10 @@ export default [
     path: "/login",
     name: "login",
     component: Login,
-    meta: {
-      hasMenu: false,
-    },
   },
   {
     path: "/register",
     name: "register",
     component: Register,
-    meta: {
-      hasMenu: false,
-    },
   },
 ];
