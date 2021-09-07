@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import Store from "@/store/store";
 import Home from "@/views/pages/Home.vue";
 import About from "@/views/pages/About.vue";
+import Profile from "@/views/pages/Profile.vue";
 import auth from "./pages/auth";
 import utils from "./pages/utils";
 
@@ -22,6 +23,14 @@ const routes = [
     path: "/about",
     name: "about",
     component: About,
+    meta: {
+      requiresAuth: true,
+    },
+  },
+  {
+    path: "/profile",
+    name: "profile",
+    component: Profile,
     meta: {
       requiresAuth: true,
     },
