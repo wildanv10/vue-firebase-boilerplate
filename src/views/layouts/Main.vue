@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Menu v-if="hasMenu || isAuthenticated" />
+    <Menu v-if="hasMenu" />
     <router-view />
   </div>
 </template>
@@ -12,11 +12,8 @@ export default {
     Menu,
   },
   computed: {
-    isAuthenticated() {
-      return this.$store.state.auth.isAuthenticated;
-    },
     hasMenu() {
-      return this.$route.meta.hasMenu ? true : false;
+      return this.$route.meta.hasMenu == false ? false : true;
     },
   },
 };
