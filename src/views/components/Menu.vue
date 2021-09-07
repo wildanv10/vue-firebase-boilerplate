@@ -54,41 +54,32 @@
         </b-navbar-item>
       </template>
     </b-navbar>
-
-    <!-- <div id="nav">
-    <template v-if="isAuthenticated">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link> |
-      <router-link to="/profile">Profile</router-link> |
-      <a @click="onLogout">Logout</a>
-    </template>
-
-    <template v-if="!isAuthenticated">
-      <router-link to="/login">Login</router-link> |
-      <router-link to="/register">Register</router-link>
-    </template>
-  </div> -->
   </div>
 </template>
 
 <script>
+import auth from "../../services/firebase/auth";
+
 export default {
   methods: {
     onLogout() {
-      this.$store
-        .dispatch("auth/setAuthenticated", false)
-        .then((isAuthenticated) => {
-          if (!isAuthenticated) {
-            this.$router.push({
-              name: "login",
-            });
-          }
-        });
+      auth
+        .logout()
+        .then(() => {
+          this.$store.dispatch("auth/logout").then(() => {
+            this.$router
+              .push({
+                name: "home",
+              })
+              .catch(() => {});
+          });
+        })
+        .catch((error) => console.log("ini error", error));
     },
   },
   computed: {
     isAuthenticated() {
-      return this.$store.state.auth.isAuthenticated;
+      return this.$store.state.auth.user.accessToken ? true : false;
     },
   },
 };

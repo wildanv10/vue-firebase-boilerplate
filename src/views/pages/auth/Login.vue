@@ -6,7 +6,7 @@
       </div>
       <div class="card-content">
         <div class="content">
-          <form @submit="onSubmit">
+          <form @submit="onLogin">
             <b-field label="Email">
               <b-input v-model="form.email" name="email" autofocus />
             </b-field>
@@ -16,6 +16,7 @@
                 v-model="form.password"
                 type="password"
                 name="password"
+                password-reveal
               />
             </b-field>
 
@@ -28,7 +29,7 @@
 
             <div class="buttons is-justify-content-flex-end">
               <b-button @click="onRegister">Register</b-button>
-              <b-button type="is-primary" @click="onSubmit">Login</b-button>
+              <b-button type="is-primary" @click="onLogin">Login</b-button>
             </div>
           </form>
         </div>
@@ -38,6 +39,8 @@
 </template>
 
 <script>
+import auth from "../../../services/firebase/auth";
+
 export default {
   data() {
     return {
@@ -49,16 +52,24 @@ export default {
     };
   },
   methods: {
-    onSubmit() {
-      this.$store
-        .dispatch("auth/setAuthenticated", true)
-        .then((isAuthenticated) => {
-          if (isAuthenticated) {
-            this.$router.push({
-              name: "about",
-            });
-          }
+    onLogin() {
+      auth
+        .login(this.form)
+        .then((user) => {
+          this.onLoginSuccess(user);
+        })
+        .catch((error) => {
+          console.log("ini error", error);
         });
+    },
+    onLoginSuccess(user) {
+      this.$store.dispatch("auth/login", user).then(() => {
+        this.$router
+          .push({
+            name: "home",
+          })
+          .catch(() => {});
+      });
     },
     onRegister() {
       this.$router.push({

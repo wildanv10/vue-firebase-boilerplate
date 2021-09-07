@@ -9,12 +9,10 @@ import utils from "./pages/utils";
 
 Vue.use(VueRouter);
 
-// const isAuthenticated = Store.state.auth.isAuthenticated;
-
 const routes = [
   {
     path: "/",
-    name: "Home",
+    name: "home",
     component: Home,
   },
   ...auth,
@@ -45,7 +43,7 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   if (to.matched.some((record) => record.meta.requiresAuth)) {
-    if (Store.state.auth.isAuthenticated) {
+    if (Store.state.auth.user.accessToken) {
       next();
     } else {
       next("/login");

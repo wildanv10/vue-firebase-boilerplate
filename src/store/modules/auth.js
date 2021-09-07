@@ -1,20 +1,41 @@
+const defaultUser = {
+  accessToken: null,
+  email: null,
+  name: null,
+  phoneNumber: null,
+};
+
 const store = {
   namespaced: true,
   state: {
-    isAuthenticated: false,
+    user: { ...defaultUser },
   },
   mutations: {
-    setAuthenticated(state, isAuthenticated) {
-      state.isAuthenticated = isAuthenticated;
+    setUser(state, user) {
+      Object.assign(state.user, user);
     },
   },
   actions: {
-    setAuthenticated({ state, commit }, isAuthenticated) {
-      commit("setAuthenticated", isAuthenticated);
-      return Promise.resolve(state.isAuthenticated);
+    login({ commit }, user = null) {
+      const accessToken = user?.accessToken || null;
+      const email = user?.email || null;
+      const name = user?.name || null;
+      const phoneNumber = user?.phoneNumber || null;
+      const tmpUser = {
+        accessToken,
+        email,
+        name,
+        phoneNumber,
+      };
+
+      commit("setUser", tmpUser);
+      return Promise.resolve();
+    },
+    logout({ commit }) {
+      commit("setUser", defaultUser);
+      return Promise.resolve();
     },
   },
-  modules: {},
 };
 
 export default store;
