@@ -4,12 +4,12 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyDKD5itmQT8YqC4rtAbpSoYParpgsvSaHE",
-  authDomain: "boilerplate-a2e96.firebaseapp.com",
-  projectId: "boilerplate-a2e96",
-  storageBucket: "boilerplate-a2e96.appspot.com",
-  messagingSenderId: "337604096201",
-  appId: "1:337604096201:web:b4d9cb584043498a8c1d18",
+  apiKey: process.env.VUE_APP_FIREBASE_API_KEY,
+  authDomain: process.env.VUE_APP_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.VUE_APP_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.VUE_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.VUE_APP_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.VUE_APP_FIREBASE_APP_ID,
 };
 
 // Initialize Firebase
