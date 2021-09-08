@@ -11,7 +11,7 @@
       </template>
 
       <!-- authenticated user -->
-      <template #start>
+      <template v-if="!isLoading" #start>
         <b-navbar-item tag="router-link" to="/"> Home </b-navbar-item>
         <b-navbar-dropdown label="Info">
           <b-navbar-item tag="router-link" to="/about"> About </b-navbar-item>
@@ -21,7 +21,7 @@
         </b-navbar-dropdown>
       </template>
 
-      <template #end>
+      <template v-if="!isLoading" #end>
         <b-navbar-item tag="div">
           <div class="buttons">
             <a class="button is-light" @click="onLogout"> Log out </a>
@@ -41,7 +41,7 @@
       </template>
 
       <!-- unauthenticated user -->
-      <template #end>
+      <template v-if="!isLoading" #end>
         <b-navbar-item tag="div">
           <div class="buttons">
             <router-link class="button is-primary" to="/register">
@@ -80,6 +80,9 @@ export default {
   computed: {
     isAuthenticated() {
       return this.$store.state.auth.user.accessToken ? true : false;
+    },
+    isLoading() {
+      return this.$store.state.utils.isLoading;
     },
   },
 };
