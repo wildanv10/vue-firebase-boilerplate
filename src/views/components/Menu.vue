@@ -13,12 +13,10 @@
       <!-- authenticated user -->
       <template v-if="!isLoading" #start>
         <b-navbar-item tag="router-link" to="/"> Home </b-navbar-item>
-        <b-navbar-dropdown label="Info">
-          <b-navbar-item tag="router-link" to="/about"> About </b-navbar-item>
-          <b-navbar-item tag="router-link" to="/profile">
-            Profile
-          </b-navbar-item>
-        </b-navbar-dropdown>
+        <b-navbar-item tag="router-link" to="/categories">
+          Categories
+        </b-navbar-item>
+        <b-navbar-item tag="router-link" to="/profile"> Profile </b-navbar-item>
       </template>
 
       <template v-if="!isLoading" #end>

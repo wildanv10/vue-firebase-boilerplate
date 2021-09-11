@@ -2,7 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Store from "@/store/store";
 import Home from "@/views/pages/Home.vue";
-import About from "@/views/pages/About.vue";
+import Categories from "@/views/pages/Categories.vue";
 import Profile from "@/views/pages/Profile.vue";
 import auth from "./pages/auth";
 import utils from "./pages/utils";
@@ -18,9 +18,9 @@ const routes = [
   ...auth,
   ...utils,
   {
-    path: "/about",
-    name: "about",
-    component: About,
+    path: "/categories",
+    name: "categories",
+    component: Categories,
     meta: {
       requiresAuth: true,
     },
